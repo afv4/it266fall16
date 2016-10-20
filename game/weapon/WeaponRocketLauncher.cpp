@@ -1,3 +1,10 @@
+// idPlayer* myPlayer = NULL;
+// if (myPlayer == NULL) {printf("error, no pointer to player\n");return SRESULT_ERROR;}
+// myPlayer = GetOwner();
+// idVec3 origin;
+// idMat3 axis;
+// myPlayer->GetPosition(origin,axis);
+// gameLocal.Printf("Attacking at position: (%f, %f, %f)\n",origin.x,origin.y,origin.z);
 #include "../../idlib/precompiled.h"
 #pragma hdrstop
 

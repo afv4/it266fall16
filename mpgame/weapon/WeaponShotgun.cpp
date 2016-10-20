@@ -164,7 +164,9 @@ stateResult_t rvWeaponShotgun::State_Fire( const stateParms_t& parms ) {
 	switch ( parms.stage ) {
 		case STAGE_INIT:
 			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
-			Attack( false, hitscans, spread, 0, 1.0f );
+			Attack( false, hitscans, spread * 4, 0, 2.5f ); //afv4 multi spread by 3 and double damg
+			Attack( false, hitscans-3, spread * 3, 0, 2.25f ); //afv4 second shot -damg -pellets +acc
+			Attack( false, hitscans-6, spread * 2, 0, 2.0f ); //afv4 third shot --damg --pellets ++acc
 			PlayAnim( ANIMCHANNEL_ALL, "fire", 0 );	
 			return SRESULT_STAGE( STAGE_WAIT );
 	
