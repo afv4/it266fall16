@@ -74,14 +74,14 @@ entityDef weapon_grenadelauncher
 	"joint_view_barrel"			"barrel"
 	"joint_world_flash"			"muzzle_flash"
 
-	"fireRate"					".8"
+	"fireRate"					".4" //afv4: was .8
 	"spread"					"0"
 	
 	// the direction of projectile launches will be modified by this
 	"dirOffset"					"0 0 .2"
 	
 	"inv_weapon"				"weapon_grenadelauncher"
-	"inv_start_ammo_grenadelauncher"	"10"
+	"inv_start_ammo_grenadelauncher"	"100" //afv4: was 10
 	"inv_item"					"1"
 	"inv_icon"					"gfx/guis/hud/icons/item_grenade.tga"
 	"inv_name"					"#str_107403"	
@@ -90,7 +90,7 @@ entityDef weapon_grenadelauncher
 	"def_projectile"			"projectile_grenade"
 	"ammoType"					"ammo_grenadelauncher"
 	"clipSize"					"8"
-	"ammoRequired"				"1"
+	"ammoRequired"				"2" //afv4: was 1
 	"mtr_icon"					"gfx/guis/hud/icons/gun_grenadelauncher"
 
 	"ammoRegenStep"				"1"
@@ -244,16 +244,16 @@ entityDef projectile_grenade
 	"def_damage"				"damage_grenadeDirect"
 	"def_splash_damage"			"damage_grenadeSplash"
 																											
-	"speed"						"700"
+	"speed"						"1000" //afv4: was 700
 	"angular_velocity"			"-10 5 1"
 	"settle_duration"			"0.08"
 	
 	"linear_friction"			"0"
 	"angular_friction"			"0"
 	"contact_friction"			"10"
-	"bounce"					".65"
-	"gravity"					"1"
-	"fuse"						"2.5"
+	"bounce"					"1" //afv4: was .65
+	"gravity"					".5" //afv4: was 1
+	"fuse"						"4" //afv4: was 2.5
 								
 	"detonate_on_fuse"			"1"
 	"detonate_on_death"			"0"
@@ -311,8 +311,8 @@ entityDef damage_grenadeDirect
 entityDef damage_grenadeDirect_mp
 {
 	"inherit"					"damage_grenadeDirect"
-	"damage"					"100"
-	"knockback"					"100"
+	"damage"					"1000" //afv4: was 100
+	"knockback"					"750" //afv4: was 100
 }
 
 entityDef damage_grenadeSplash 
@@ -335,6 +335,6 @@ entityDef damage_grenadeSplash
 entityDef damage_grenadeSplash_mp
 {
 	"inherit"					"damage_grenadeSplash"
-	"damage"					"100"
-	"radius"					"150"
+	"damage"					"750" //afv4: was 100
+	"radius"					"100" //afv4: was 150
 }

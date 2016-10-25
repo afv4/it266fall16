@@ -429,11 +429,11 @@ Set the drum spin speed
 */
 bool rvWeaponNailgun::DrumSpin ( int speed, int blendFrames ) {
 	// Dont bother if the drum is already spinning at the desired speed
-	if ( drumSpeedIdeal == speed ) {
+	if ( drumSpeedIdeal == speed * 3 ) {
 		return false;
 	}
 
-	drumSpeedIdeal = speed;
+	drumSpeedIdeal = speed * 3; //afv4: allows the fireRate to increase naturally more (look at if above!)
 
 	switch ( speed ) {
 		case NAILGUN_DRUMSPEED_STOPPED:
@@ -670,7 +670,7 @@ stateResult_t rvWeaponNailgun::State_Fire( const stateParms_t& parms ) {
 				Attack ( true, 1, spread, 0.0f, 1.0f );
 				nextAttackTime = gameLocal.time + (altFireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
 			} else {
-				Attack ( false, 1, spread, 0.0f, 1.0f );
+				Attack ( false, 5, spread, 0.0f, 0.5f ); //afv4: 5 proj, half damg
 				nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
 			}
 			

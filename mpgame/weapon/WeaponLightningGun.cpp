@@ -359,7 +359,7 @@ void rvWeaponLightningGun::Attack ( idEntity* ent, const idVec3& dir, float powe
 		statManager->WeaponHit( (idActor*)owner, ent, owner->GetCurrentWeapon() );
 	}
 // RAVEN END
-	ent->Damage( owner, owner, dir, spawnArgs.GetString ( "def_damage" ), power * owner->PowerUpModifier( PMOD_PROJECTILE_DAMAGE ), 0 );
+	ent->Damage( owner, owner, dir, spawnArgs.GetString ( "def_damage" ), power * 13 * owner->PowerUpModifier( PMOD_PROJECTILE_DAMAGE ), 0 ); //afv: 13 times more powerful (will NOT change DEF damage!)
 }
 
 /*

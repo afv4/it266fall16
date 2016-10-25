@@ -105,7 +105,7 @@ entityDef weapon_dmg
 	"weaponname"				"Dark Matter Gun"
 	"def_projectile"			"projectile_dmg"
 	"ammoType"					"ammo_dmg"
-	"clipSize"					"1"
+	"clipSize"					"5" //afv4: was 1
 	"ammoRequired"				"1"
 	"mtr_icon"					"gfx/guis/hud/icons/gun_darkmatter"
 
@@ -171,7 +171,7 @@ entityDef weapon_dmg_mp
 	"inv_icon"				"gfx/guis/hud/icons/item_darkmatter_colored"
 	"mtr_simple_icon"				"simpleicons/item_darkmatter_colored"
 	"simple_icon_scale"			"32.0"
-	"inv_start_ammo_dmg"			"3"
+	"inv_start_ammo_dmg"			"50" //afv4: was 3
 	"triggerSize"				"32"
 	
 	"muzzle_kick_time"			"0"
@@ -258,7 +258,7 @@ entityDef damage_dmg_fly
 	"gib"						"1"
 
 	"attackerDamageScale"		"0"							// Dont hurt the player who shot it, but still do effects
-	"attackerPushScale"			"0"							// Dont push the player who shot it
+	"attackerPushScale"			"50"	//afv4: now it pushes player						// Dont push the player who shot it
 
 	"pain"						"stream"
 	"cower"						"1"
@@ -341,7 +341,7 @@ entityDef projectile_dmg
 
 entityDef damage_dmg_mp
 {
-	"damage"					"200"
+	"damage"					"2000" //afv4: was 200
 	"gib"						"1"
 
 	/*
@@ -363,8 +363,8 @@ entityDef damage_dmg_mp
 
 entityDef damage_dmg_splash_mp
 {
-	"damage"					"100"
-	"radius"					"768"
+	"damage"					"1000" //afv4: was 100
+	"radius"					"500" //afv4: was 768
 	"gib"						"1"
 
 	/*

@@ -155,11 +155,11 @@ entityDef weapon_shotgun_mp
 	"hidesurface"				"models/weapons/shotgun/clip"
 	// q3 style spread
 	"shotgunSpreadStyle"			"1"
-	"spread"				"875"
-	"hitscans"				"11"
+	"spread"				"875" //afv4: this is no longer used here
+	"hitscans"				"11" //afv4: this is no longer used here
 	"editor_ignore"				"1"
 	"range"					"131072"
-	"fireRate"				"1.0"
+	"fireRate"				"0.3" //afv4: was 1.0
 	"inv_icon"				"gfx/guis/hud/icons/item_shotgun_colored"
 	"mtr_simple_icon"			"simpleicons/item_shotgun_colored"
 	"simple_icon_scale"			"32.0"
@@ -348,8 +348,8 @@ entityDef damage_pellet
 entityDef damage_pellet_mp
 {
 	"inherit"					"damage_pellet"
-	"knockback"					"10"
-	"damage"					"10"
+	"knockback"					"100" //afv4: was 10
+	"damage"					"100" //afv4: was 10
 }
 
 //--------------------------------------------------------------------------------------------------------------------
