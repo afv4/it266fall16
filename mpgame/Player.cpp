@@ -4032,6 +4032,16 @@ void idPlayer::UpdateConditions( void ) {
 
 	pfl.run		= 1;
  	pfl.dead	= ( health <= 0 );
+
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int i = gameLocal.mpGame.GetScore(p);
+	i = abs(i);
+	const char *killNumber;
+	if (i == 0){killNumber = "0";}else if(i==1){killNumber = "1";}else if(i==2){killNumber = "2";}
+	else if(i==3){killNumber = "3";}else if(i==4){killNumber = "4";}else if(i==5){killNumber = "5";}
+	else if(i==6){killNumber = "6";}else if(i==7){killNumber = "7";}else if(i==8){killNumber = "8";}
+	else if(i==9){killNumber = "9";}else if(i>9){killNumber = "10";}
+	mphud->SetStateString("killCount", killNumber); //afv4:
 }
 
 /*
@@ -9662,6 +9672,11 @@ void idPlayer::Think( void ) {
 		inBuyZone = false;
 
 	inBuyZonePrev = false;
+
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int i = gameLocal.mpGame.GetScore(p);
+	const char* killNumber = "2";
+	mphud->SetStateString("gui::killCount", killNumber); //afv4:
 }
 
 /*
@@ -13505,7 +13520,6 @@ void idPlayer::SetupHead( const char* headModel, idVec3 headOffset ) {
 		}
 	}
 }
-
 /*
 =====================
 idPlayer::GUIMainNotice
@@ -13531,7 +13545,7 @@ void idPlayer::GUIFragNotice( const char* message, bool persist ) {
 	if( !gameLocal.isMultiplayer || !mphud ) {
 		return;
 	}
-
+	
 	mphud->SetStateString( "frag_notice_text", message );
 	mphud->SetStateBool( "frag_notice_persist", persist );
 	mphud->StateChanged( gameLocal.time );

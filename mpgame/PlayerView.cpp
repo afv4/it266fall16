@@ -376,7 +376,7 @@ void idPlayerView::AddBloodSpray( float duration ) {
 	blob->t1 = t1;
 	blob->s2 = s2;
 	blob->t2 = t2;
-}
+} //afv4: reactivated this
 
 /*
 ==================

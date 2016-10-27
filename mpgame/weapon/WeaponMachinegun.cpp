@@ -220,6 +220,8 @@ rvWeaponMachinegun::State_Fire
 ================
 */
 stateResult_t rvWeaponMachinegun::State_Fire ( const stateParms_t& parms ) {
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int i = gameLocal.mpGame.GetScore(p); //afv4
 	enum {
 		STAGE_INIT,
 		STAGE_WAIT,

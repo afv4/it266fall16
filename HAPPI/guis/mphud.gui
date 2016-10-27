@@ -4,8 +4,11 @@ windowDef Desktop
 	visible	1
 	nocursor	1
 	menugui	1
+	)	/
+	2	)
+	::	frag_notice_duration
 	float	"chatCount"	0
-	float	"igOffset"	282-((32*gui::ig_awards)/2)
+	float	"igOffset"	282-((32*gui::ig_awards
 	definevec4	"white"	1,1,1,1
 	definevec4	"white_5"	1,1,1,0.5
 	definevec4	"white_0"	1,1,1,0
@@ -22,8 +25,8 @@ windowDef Desktop
 	definevec4	"defensive_color"	1,1,1,1
 	definevec4	"aim_text_color"	1,1,1,1
 	definevec4	"aim_fade_color"	1,1,1,0
-	float	"aim_fade_time"	10000-gui::main_notice_duration
-	float	"frag_fade_time"	10000-gui::frag_notice_duration
+	float	"aim_fade_time"	10000-gui
+	float	"frag_fade_time"	10000-gui
 	float	"round1_bracket1_done"	0
 	float	"round1_bracket2_done"	0
 	float	"round1_bracket3_done"	0
@@ -4123,6 +4126,30 @@ windowDef Desktop
 		}
 
 	}
+	windowDef killCount
+	{
+		text	"gui::killCount"
+		rect	468,2,97,69
+		forecolor	1,1,1,1
+		textscale	1
+		visible	(1)
+		textalign	2
+		textspacing	-1
+		font	"fonts/chain"
+
+		onTime 0 {
+			transition "forecolor_w" "1" "0.5" "800" ;
+		}
+
+		onTime 500 {
+			transition "forecolor_w" "0.5" "1" "100" ;
+		}
+
+		onTime 4000 {
+			resetTime "0" ;
+		}
+
+	}
 	windowDef voteNotice
 	{
 		rect	4,145,632,31
@@ -4260,8 +4287,9 @@ windowDef Desktop
 		}
 
 	}
-	popupDef Insanity%:
+	popupDef Insanity
 	{
+		:	{
 		rect	184,1,267,58
 		visible	1
 		forecolor	1,1,1,1
@@ -4276,12 +4304,13 @@ windowDef Desktop
 		text	"00"
 		textscale	1
 	}
-	popupDef killCount
+	popupDef fragAmount
 	{
-		rect	452,4,115,51
+		rect	466,6,100,52
 		visible	1
 		forecolor	1,1,1,1
-		text	""
+		text	"gui::fragAmount"
 		textscale	1
+		textalign	2
 	}
 }
