@@ -4129,7 +4129,7 @@ windowDef Desktop
 	windowDef killCount
 	{
 		text	"gui::killCount"
-		rect	468,2,97,69
+		rect	468,1,97,69
 		forecolor	1,1,1,1
 		textscale	1
 		visible	(1)
@@ -4303,14 +4303,5 @@ windowDef Desktop
 		forecolor	1,1,1,1
 		text	"00"
 		textscale	1
-	}
-	popupDef fragAmount
-	{
-		rect	466,6,100,52
-		visible	1
-		forecolor	1,1,1,1
-		text	"gui::fragAmount"
-		textscale	1
-		textalign	2
 	}
 }

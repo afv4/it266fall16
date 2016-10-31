@@ -722,9 +722,9 @@ entityDef player_marine
 
 	// stats
 	"health"						"100"
-	"maxhealth"						"100"
+	"maxhealth"						"2500" //afv: was 100
 	"armor"							"0"
-	"maxarmor"						"100"
+	"maxarmor"						"2500" //afv4: was 100
 	"minRestoreHealth0"					"20"		// Minimum health when loading a game for skill level 0
 	"minRestoreHealth1"					"10"		// Minimum health when loading a game for skill level 1
 
@@ -741,16 +741,16 @@ entityDef player_marine
 	"ammo_none"						"-1"
 
 	"max_ammo_blaster"					"-1"
-	"max_ammo_railgun"					"50"
-	"max_ammo_machinegun"					"300"
-	"max_ammo_nailgun"					"300"
-	"max_ammo_shotgun"					"50"
-	"max_ammo_hyperblaster"					"400"
-	"max_ammo_napalmgun"					"40"
-	"max_ammo_rocketlauncher"				"40"
-	"max_ammo_grenadelauncher"				"50"
-	"max_ammo_lightninggun"					"400"
-	"max_ammo_dmg"						"25"
+	"max_ammo_railgun"					"500" //afv: was 50
+	"max_ammo_machinegun"					"500" //afv: was 300
+	"max_ammo_nailgun"					"500" //afv: was 300
+	"max_ammo_shotgun"					"500" //afv: was 50
+	"max_ammo_hyperblaster"					"500" //afv: was 400
+	"max_ammo_napalmgun"					"500" //afv: was 40
+	"max_ammo_rocketlauncher"				"500" //afv: was 40
+	"max_ammo_grenadelauncher"				"500" //afv: was 50
+	"max_ammo_lightninggun"					"500" //afv: was 400
+	"max_ammo_dmg"						"500" //afv: was 25
 	"max_ammo_none"						"-1"
 
 	// inventory items
@@ -1074,12 +1074,12 @@ entityDef player_marine_mp
 	"weapon10_best"			"1"
 
 	// stats
-	"health"			"5000" //afv4: was 125
-	"armor"				"5000" //afv4: was 0
+	"health"			"2500" //afv4: was 125
+	"armor"				"2500" //afv4: was 0
 
 	"ammo_none"			"-1"
 	"ammo_railgun"			"500"		//afv4: was 0
-	"ammo_machinegun"		"100"	//afv4: was 100
+	"ammo_machinegun"		"500"	//afv4: was 100
 	"ammo_nailgun"			"500"		//afv4: was 0
 	"ammo_blaster"			"-1"
 	"ammo_shotgun"			"500"		//afv4: was 0

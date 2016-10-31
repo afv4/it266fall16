@@ -221,6 +221,10 @@ rvWeaponHyperblaster::State_Fire
 ================
 */
 stateResult_t rvWeaponHyperblaster::State_Fire ( const stateParms_t& parms ) {
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int i = gameLocal.mpGame.GetScore(p);
+	i = abs(i);
+	if(i==0){i+=1;} //afv4: initialize the KC mod
 	enum {
 		STAGE_INIT,
 		STAGE_WAIT,
@@ -229,7 +233,7 @@ stateResult_t rvWeaponHyperblaster::State_Fire ( const stateParms_t& parms ) {
 		case STAGE_INIT:
 			SpinUp ( );
 			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
-			Attack ( false, 5, 7, 0, 0.5f ); //afv4: now shoots 5 proj, spread is 7, half damg
+			Attack ( false, 5 * i, 6 * i, 0, 0.5f * i ); //afv4: proj now 5 mod by KC, spread now 6 mod by KC, damg halved and mod by KC
 			if ( ClipSize() ) {
 				viewModel->SetShaderParm ( HYPERBLASTER_SPARM_BATTERY, (float)AmmoInClip()/ClipSize() );
 			} else {

@@ -338,6 +338,10 @@ rvWeaponLightningGun::Attack
 ================
 */
 void rvWeaponLightningGun::Attack ( idEntity* ent, const idVec3& dir, float power ) {
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int i = gameLocal.mpGame.GetScore(p);
+	i = abs(i);
+	if(i==0){i+=1;} //afv4: initialize the KC mod	
 	// Double check
 	if ( !ent || !ent->fl.takedamage ) {
 		return;
@@ -359,7 +363,7 @@ void rvWeaponLightningGun::Attack ( idEntity* ent, const idVec3& dir, float powe
 		statManager->WeaponHit( (idActor*)owner, ent, owner->GetCurrentWeapon() );
 	}
 // RAVEN END
-	ent->Damage( owner, owner, dir, spawnArgs.GetString ( "def_damage" ), power * 13 * owner->PowerUpModifier( PMOD_PROJECTILE_DAMAGE ), 0 ); //afv: 13 times more powerful (will NOT change DEF damage!)
+	ent->Damage( owner, owner, dir, spawnArgs.GetString ( "def_damage" ), power * i * owner->PowerUpModifier( PMOD_PROJECTILE_DAMAGE ), 0 ); //afv: damg mod by i
 }
 
 /*

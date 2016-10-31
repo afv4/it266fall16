@@ -138,6 +138,10 @@ rvWeaponGrenadeLauncher::State_Fire
 ================
 */
 stateResult_t rvWeaponGrenadeLauncher::State_Fire ( const stateParms_t& parms ) {
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int i = gameLocal.mpGame.GetScore(p);
+	i = abs(i);
+	if(i==0){i+=1;} //afv4: initialize the KC mod
 	enum {
 		STAGE_INIT,
 		STAGE_WAIT,
@@ -145,7 +149,7 @@ stateResult_t rvWeaponGrenadeLauncher::State_Fire ( const stateParms_t& parms ) 
 	switch ( parms.stage ) {
 		case STAGE_INIT:
 			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
-			Attack ( false, 2, 10, 0, 2.0f ); //afv4: two nades, spread is 10, double damg
+			Attack ( false, 2 * i, 10 * i, 0, 2.0f * i ); //afv4: proj HC'd to 2 and mod by KC, spread HC'd to 10 and mod by KC, damg HC'd to 2.0f and mod by KC
 			PlayAnim ( ANIMCHANNEL_ALL, GetFireAnim(), 0 );	
 			return SRESULT_STAGE ( STAGE_WAIT );
 	

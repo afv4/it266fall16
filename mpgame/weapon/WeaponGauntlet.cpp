@@ -206,6 +206,10 @@ rvWeaponGauntlet::Attack
 ================
 */
 void rvWeaponGauntlet::Attack ( void ) {
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int i = gameLocal.mpGame.GetScore(p);
+	i = abs(i);
+	if(i==0){i+=1;} //afv4: initialize the KC mod
 	trace_t		tr;
 	idEntity*	ent;
 	
@@ -285,6 +289,7 @@ void rvWeaponGauntlet::Attack ( void ) {
 			if ( ent->fl.takedamage ) {
 				float dmgScale = 1.0f;
 				dmgScale *= owner->PowerUpModifier( PMOD_MELEE_DAMAGE );
+				dmgScale *= i; //afv4: added KC mod to dmgScale
 				ent->Damage ( owner, owner, playerViewAxis[0], spawnArgs.GetString ( "def_damage" ), dmgScale, 0 );
 				StartSound( "snd_hit", SND_CHANNEL_ANY, 0, false, NULL );
 				if ( ent->spawnArgs.GetBool( "bleed" ) ) {

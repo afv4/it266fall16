@@ -305,6 +305,10 @@ rvWeaponDarkMatterGun::State_Fire
 ================
 */
 stateResult_t rvWeaponDarkMatterGun::State_Fire ( const stateParms_t& parms ) {
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int i = gameLocal.mpGame.GetScore(p);
+	i = abs(i);
+	if(i==0){i+=1;} //afv4: initialize the KC mod
 	enum {
 		STAGE_INIT,
 		STAGE_WAIT,
@@ -314,7 +318,7 @@ stateResult_t rvWeaponDarkMatterGun::State_Fire ( const stateParms_t& parms ) {
 			StopRings ( );
 
 			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
-			Attack ( false, 2, 20, 0, 3.0f ); //afv4: triple damg, two proj, spread now 20
+			Attack ( false, 2 * i, 20 * i, 0, 3.0f * i ); //afv4: proj HC'd to 2 and mod by KC, spread HC'd to 20 and mod by KC, damg HC'd to 3.0f and mod by KC
 			PlayAnim ( ANIMCHANNEL_ALL, "fire", 0 );	
 			return SRESULT_STAGE ( STAGE_WAIT );
 	

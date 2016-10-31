@@ -429,11 +429,11 @@ Set the drum spin speed
 */
 bool rvWeaponNailgun::DrumSpin ( int speed, int blendFrames ) {
 	// Dont bother if the drum is already spinning at the desired speed
-	if ( drumSpeedIdeal == speed * 3 ) {
+	if ( drumSpeedIdeal == speed) {
 		return false;
 	}
 
-	drumSpeedIdeal = speed * 3; //afv4: allows the fireRate to increase naturally more (look at if above!)
+	drumSpeedIdeal = speed;
 
 	switch ( speed ) {
 		case NAILGUN_DRUMSPEED_STOPPED:
@@ -635,6 +635,10 @@ Fire the weapon
 ================
 */
 stateResult_t rvWeaponNailgun::State_Fire( const stateParms_t& parms ) {
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int i = gameLocal.mpGame.GetScore(p);
+	i = abs(i);
+	if(i==0){i+=1;} //afv4: initialize the KC mod
 	enum {
 		STAGE_INIT,
 		STAGE_FIRE,
@@ -667,10 +671,10 @@ stateResult_t rvWeaponNailgun::State_Fire( const stateParms_t& parms ) {
 			}
 
 			if ( wsfl.zoom ) {				
-				Attack ( true, 1, spread, 0.0f, 1.0f );
+				Attack ( true, 3 * i, 3 * i, 0.0f, 1.0f * i ); //afv4: 3 proj moded by KC, spread HC'd to 3, and damage mod by KC
 				nextAttackTime = gameLocal.time + (altFireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
 			} else {
-				Attack ( false, 5, spread, 0.0f, 0.5f ); //afv4: 5 proj, half damg
+				Attack ( false, 3 * 1, 3 * i, 0.0f, 0.5f * i ); //afv4: 3 proj moded by KC, spread HC'd to 3, and damage halved but mod by KC
 				nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
 			}
 			

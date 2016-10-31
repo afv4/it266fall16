@@ -332,10 +332,14 @@ void idInventory::RestoreInventory( idPlayer *owner, const idDict &dict ) {
 	//We might not need to clear it out.
 	//Clear();
 
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int kc = gameLocal.mpGame.GetScore(p);
+	kc = abs(kc); //afv4: initialize the KC mod
+
 	// health/armor
-	maxHealth		= dict.GetInt( "maxhealth", "100" );
-	armor			= dict.GetInt( "armor", "50" );
-	maxarmor		= dict.GetInt( "maxarmor", "100" );
+	maxHealth		= dict.GetInt( "maxhealth", "100" ) + (kc * 100);
+	armor			= dict.GetInt( "armor", "50" ) + (kc * 100);
+	maxarmor		= dict.GetInt( "maxarmor", "100" ) + (kc * 100); //afv4: the more KC the more health+armour you have at max
 
 	// ammo
 	for( i = 0; i < MAX_AMMOTYPES; i++ ) {
@@ -4388,20 +4392,27 @@ idPlayer::PowerUpModifier
 ===============
 */
 float idPlayer::PowerUpModifier( int type ) {
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int i = gameLocal.mpGame.GetScore(p);
+	i = abs(i);
+	if(i==0){i+=1;} //afv4: initialize the KC mod
 	float mod = 1.0f;
 
 	if ( PowerUpActive( POWERUP_QUADDAMAGE ) ) {
 		switch( type ) {
 			case PMOD_PROJECTILE_DAMAGE: {
-				mod *= 3.0f;
+				mod *= 2.5f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 			}
 			case PMOD_MELEE_DAMAGE: {
-				mod *= 3.0f;
+				mod *= 2.5f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 			}
 			case PMOD_PROJECTILE_DEATHPUSH: {
-				mod *= 2.0f;
+				mod *= 1.5f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 			}
 		}
@@ -4410,11 +4421,13 @@ float idPlayer::PowerUpModifier( int type ) {
 	if ( PowerUpActive( POWERUP_HASTE ) ) {
 		switch ( type ) {
 			case PMOD_SPEED:	
-				mod *= 1.3f;
+				mod *= 2.0f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 
 			case PMOD_FIRERATE:
-				mod *= 0.7f;
+				mod *= 1.25f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 		}
 	}
@@ -4424,6 +4437,7 @@ float idPlayer::PowerUpModifier( int type ) {
 		switch( type ) {
 			case PMOD_FIRERATE: {
 				mod *= 0.7f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 			}
 		}
@@ -4433,10 +4447,12 @@ float idPlayer::PowerUpModifier( int type ) {
 		switch( type ) {
 			case PMOD_PROJECTILE_DAMAGE: {
 				mod *= 2.0f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 			}
 			case PMOD_MELEE_DAMAGE: {
 				mod *= 2.0f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 			}
 		}
@@ -4447,14 +4463,17 @@ float idPlayer::PowerUpModifier( int type ) {
 		switch( type ) {
 			case PMOD_PROJECTILE_DAMAGE: {
 				mod *= 1.75f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 			}
 			case PMOD_MELEE_DAMAGE: {
 				mod *= 1.75f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 			}
 			case PMOD_FIRERATE: {
 				mod *= 0.80f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 			}
 		}
@@ -4464,10 +4483,12 @@ float idPlayer::PowerUpModifier( int type ) {
 		switch( type ) {
 			case PMOD_FIRERATE: {
 				mod *= (2.0f / 3.0f);
+				mod *= i; //afv4: powerup modded by KC
 				break;
 			}
 			case PMOD_SPEED: {	
 				mod *= 1.5f;
+				mod *= i; //afv4: powerup modded by KC
 				break;
 			}
 		}

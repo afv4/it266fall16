@@ -180,6 +180,10 @@ rvWeaponRailgun::State_Fire
 ================
 */
 stateResult_t rvWeaponRailgun::State_Fire ( const stateParms_t& parms ) {
+	idPlayer *p = gameLocal.GetLocalPlayer();
+	int i = gameLocal.mpGame.GetScore(p);
+	i = abs(i);
+	if(i==0){i+=1;} //afv4: initialize the KC mod
 	enum {
 		STAGE_INIT,
 		STAGE_WAIT,
@@ -187,7 +191,7 @@ stateResult_t rvWeaponRailgun::State_Fire ( const stateParms_t& parms ) {
 	switch ( parms.stage ) {
 		case STAGE_INIT:
 			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
-			Attack ( false, 4, 13, 0, 5.0f ); //afv4: 4 spots now, 13 spread, 5 times more damg
+			Attack ( false, 3 * i, 8 * i, 0, 4.0f * i ); //afv4: hitscans now HC'd to 3 and mod by KC, spread HC'd to 8 and mod by KC, damg now 4.0f and mod by KC
 			PlayAnim ( ANIMCHANNEL_ALL, "fire", 0 );	
 			return SRESULT_STAGE ( STAGE_WAIT );
 	
