@@ -9693,11 +9693,6 @@ void idPlayer::Think( void ) {
 		inBuyZone = false;
 
 	inBuyZonePrev = false;
-
-	idPlayer *p = gameLocal.GetLocalPlayer();
-	int i = gameLocal.mpGame.GetScore(p);
-	const char* killNumber = "2";
-	mphud->SetStateString("gui::killCount", killNumber); //afv4:
 }
 
 /*
