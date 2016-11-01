@@ -340,7 +340,7 @@ idPlayerView::AddBloodSpray
 If we need a more generic way to add blobs then we can do that
 but having it localized here lets the material be pre-looked up etc.
 ==================
-*/
+
 void idPlayerView::AddBloodSpray( float duration ) {
 	if ( duration <= 0 || bloodSprayMaterial == NULL || g_skipViewEffects.GetBool() ) {
 		return;
@@ -376,7 +376,7 @@ void idPlayerView::AddBloodSpray( float duration ) {
 	blob->t1 = t1;
 	blob->s2 = s2;
 	blob->t2 = t2;
-} //afv4: reactivated this
+}*/
 
 /*
 ==================
