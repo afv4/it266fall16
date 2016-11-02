@@ -331,9 +331,8 @@ void idInventory::RestoreInventory( idPlayer *owner, const idDict &dict ) {
 
 	//We might not need to clear it out.
 	//Clear();
-
-	idPlayer *p = gameLocal.GetLocalPlayer();
-	int kc = gameLocal.mpGame.GetScore(p);
+;
+	int kc = gameLocal.mpGame.GetScore(owner);
 	kc = abs(kc); //afv4: initialize the KC mod
 
 	// health/armor
@@ -3886,7 +3885,15 @@ void idPlayer::DrawHUD( idUserInterface *_hud ) {
 		}
 		if ( _mphud ) {
 			gameLocal.mpGame.UpdateHud( _mphud );
-			_mphud->Redraw( gameLocal.time );
+			int kc = gameLocal.mpGame.GetScore(p);
+			kc = abs(kc);
+			const char *killNumber;
+			if (kc == 0){killNumber = "0";}else if(kc==1){killNumber = "1";}else if(kc==2){killNumber = "2";}
+				else if(kc==3){killNumber = "3";}else if(kc==4){killNumber = "4";}else if(kc==5){killNumber = "5";}
+				else if(kc==6){killNumber = "6";}else if(kc==7){killNumber = "7";}else if(kc==8){killNumber = "8";}
+				else if(kc==9){killNumber = "9";}else if(kc>9){killNumber = "10";}
+			_mphud->SetStateString("killCount", killNumber);
+			_mphud->Redraw( gameLocal.time );//afv4:
 		}
 		
 		if ( overlayHud && overlayHudTime > gameLocal.time && overlayHudTime != 0 ) {
@@ -4036,16 +4043,6 @@ void idPlayer::UpdateConditions( void ) {
 
 	pfl.run		= 1;
  	pfl.dead	= ( health <= 0 );
-
-	idPlayer *p = gameLocal.GetLocalPlayer();
-	int i = gameLocal.mpGame.GetScore(p);
-	i = abs(i);
-	const char *killNumber;
-	if (i == 0){killNumber = "0";}else if(i==1){killNumber = "1";}else if(i==2){killNumber = "2";}
-	else if(i==3){killNumber = "3";}else if(i==4){killNumber = "4";}else if(i==5){killNumber = "5";}
-	else if(i==6){killNumber = "6";}else if(i==7){killNumber = "7";}else if(i==8){killNumber = "8";}
-	else if(i==9){killNumber = "9";}else if(i>9){killNumber = "10";}
-	mphud->SetStateString("killCount", killNumber); //afv4:
 }
 
 /*

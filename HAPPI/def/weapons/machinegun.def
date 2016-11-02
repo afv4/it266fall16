@@ -93,7 +93,7 @@ entityDef weapon_machinegun
 	"inv_name"					"#str_107406"
 
 	"fireRate"					".1"
-	"spread"					"2"
+	"spread"					"6" //afv4: was 2
 
 	"mtr_crosshair"				"gfx/guis/crosshairs/crosshair_machinegun"
 	"def_hitscan"				"hitscan_bullet"
@@ -195,8 +195,8 @@ entityDef weapon_machinegun_mp
   	
   	// use q3 style spread in MP
   	"machinegunSpreadStyle"			"1"
-  	"spread"				"200"
-  	"spreadZoom"				"150"
+  	"spread"				"6" //afv4: was... 200??
+  	"spreadZoom"				"3" //afv4: was... 150??
   	"editor_ignore"				"1"
   	
 	"hidesurface"				"models/weapons/machinegun/clip_large"
